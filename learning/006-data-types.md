@@ -1,456 +1,513 @@
-# Data Types
+# Data Types in SQL
 
-## 🤔 Why it's needed
-
-Every application stores different kinds of data, such as:
-
-- User name
-- Age
-- Email
-- Price
-- Date
-- Images
-- Videos
-- True/False values
-
-A **Data Type** tells the computer **what kind of data is being stored** and **what operations can be performed on it**.
-
-Using the correct data type helps:
-
-- Save memory
-- Improve performance
-- Validate data correctly
-- Prevent errors
-- Maintain data consistency
+> "A data type tells the database what kind of data a column can store."
 
 ---
 
-## 🌍 Real-world example
+# 📖 What are Data Types?
 
-Imagine you're filling out a **bank account application**.
+A **Data Type** defines the **type of value** that can be stored in a table column.
 
-Each field expects a specific type of data:
+It tells the database:
 
-| Field             | Data Type            |
-| ----------------- | -------------------- |
-| Name              | Text (String)        |
-| Age               | Number (Integer)     |
-| Balance           | Decimal Number       |
-| Is Account Active | Boolean (True/False) |
-| Date of Birth     | Date                 |
-| Profile Photo     | Image/Binary         |
+- What kind of data is allowed
+- How much storage is needed
+- How the data should be processed
 
-Just like a form expects the correct kind of input, programs and databases use **Data Types** to store data correctly.
+For example:
 
----
+- Age → Number
+- Name → Text
+- Salary → Decimal Number
+- Date of Birth → Date
+- Is Active → True/False
 
-## 🧠 Interview explanation
-
-### Definition
-
-A **Data Type** defines **the type of value a variable, field, or database column can store**.
-
-It also determines:
-
-- How much memory is used.
-- What operations are allowed.
-- How the data is processed.
+Every column in a table must have a data type.
 
 ---
 
-## Common Data Types
+# 🤔 Why are Data Types Needed?
 
-### 1. String
+Imagine you're creating an **Employee** table.
 
-Stores text.
+```
+Employee
 
-Examples:
-
-```text
-"Yesu Raju"
-
-"Hello"
-
-"user@gmail.com"
+Name
+Age
+Salary
+Joining Date
+Email
 ```
 
-Used for:
+Should the database allow:
 
-- Names
-- Addresses
-- Emails
-- Messages
+```
+Age = "Hello"
 
----
+Salary = "ABC"
 
-### 2. Integer
-
-Stores whole numbers.
-
-Examples:
-
-```text
-10
-
-100
-
--50
+Joining Date = "Tomorrow"
 ```
 
-Used for:
+❌ No.
 
-- Age
-- Quantity
-- Count
+These values are invalid.
 
----
+That's why we use **Data Types**.
 
-### 3. Float / Decimal
+They ensure that only valid data is stored.
 
-Stores numbers with decimal points.
+For example:
 
-Examples:
+```
+Age → INTEGER
 
-```text
-99.99
+Salary → DECIMAL
 
-3.14
-
-5000.75
+Joining Date → DATE
 ```
 
-Used for:
-
-- Prices
-- Salary
-- Weight
+Now the database can reject incorrect values and maintain data quality.
 
 ---
 
-### 4. Boolean
+# 🌍 Real-world Example
+
+Imagine you're building an **Amazon** application.
+
+Customer Table:
+
+| Column          | Data Type     |
+| --------------- | ------------- |
+| customer_id     | INTEGER       |
+| name            | VARCHAR(100)  |
+| email           | VARCHAR(255)  |
+| age             | INTEGER       |
+| balance         | DECIMAL(10,2) |
+| created_at      | DATE          |
+| is_prime_member | BOOLEAN       |
+
+Each column stores a different type of information.
+
+Choosing the correct data type makes the database faster, more reliable, and easier to manage.
+
+---
+
+# 🧠 Interview Explanation
+
+### What are Data Types?
+
+Data Types define the type of values that can be stored in a database column.
+
+They help ensure data accuracy, improve storage efficiency, and prevent invalid data from being inserted.
+
+---
+
+### Interview Answer (30 Seconds)
+
+> Data Types specify what kind of data a column can store, such as numbers, text, dates, or boolean values. They help maintain data integrity, optimize storage, and improve query performance. Common SQL data types include INTEGER, VARCHAR, DECIMAL, DATE, TIMESTAMP, and BOOLEAN.
+
+---
+
+# 📂 Common SQL Data Types
+
+## 1️⃣ Numeric Data Types
+
+Used for numbers.
+
+| Data Type     | Example    |
+| ------------- | ---------- |
+| INT / INTEGER | 10         |
+| SMALLINT      | 100        |
+| BIGINT        | 9999999999 |
+| DECIMAL(10,2) | 5999.99    |
+| NUMERIC       | 100.50     |
+| REAL / FLOAT  | 3.14       |
+
+Example:
+
+```sql
+salary DECIMAL(10,2)
+```
+
+---
+
+## 2️⃣ Character (String) Data Types
+
+Used for text.
+
+| Data Type    | Example          |
+| ------------ | ---------------- |
+| CHAR(5)      | "ABCDE"          |
+| VARCHAR(100) | "John"           |
+| TEXT         | Long description |
+
+Example:
+
+```sql
+name VARCHAR(100)
+```
+
+---
+
+## 3️⃣ Date & Time Data Types
+
+Used for dates and times.
+
+| Data Type | Example             |
+| --------- | ------------------- |
+| DATE      | 2026-07-13          |
+| TIME      | 10:30:45            |
+| TIMESTAMP | 2026-07-13 10:30:45 |
+
+Example:
+
+```sql
+created_at TIMESTAMP
+```
+
+---
+
+## 4️⃣ Boolean Data Type
 
 Stores only two values.
 
 ```text
-true
-
-false
+TRUE
+FALSE
 ```
-
-Used for:
-
-- Login status
-- Email verified
-- Payment completed
-
----
-
-### 5. Date / Time
-
-Stores dates and times.
-
-Examples:
-
-```text
-2026-07-13
-
-10:30 AM
-
-2026-07-13 10:30:45
-```
-
-Used for:
-
-- Birthdays
-- Order dates
-- Login time
-
----
-
-### 6. Array / List
-
-Stores multiple values of the same type.
 
 Example:
-
-```text
-["Apple", "Mango", "Orange"]
-```
-
-Used for:
-
-- Tags
-- Product names
-- Skills
-
----
-
-### 7. Object / Record
-
-Stores related data using key-value pairs.
-
-Example:
-
-```text
-{
-  Name: "Rahul",
-  Age: 25
-}
-```
-
-Used for:
-
-- User details
-- Product information
-- Orders
-
----
-
-### 8. Binary (BLOB)
-
-Stores binary files.
-
-Examples:
-
-- Images
-- Videos
-- PDFs
-- Audio files
-
----
-
-## Data Types in Databases
-
-| Data Type | Example       |
-| --------- | ------------- |
-| VARCHAR   | Name          |
-| INT       | Age           |
-| DECIMAL   | Salary        |
-| BOOLEAN   | IsActive      |
-| DATE      | Birthday      |
-| TIMESTAMP | CreatedAt     |
-| BLOB      | Profile Photo |
-
----
-
-## Data Types in Programming
-
-| Data Type              | Example         |
-| ---------------------- | --------------- |
-| String                 | `"Hello"`       |
-| Number                 | `25`            |
-| Boolean                | `true`          |
-| Array                  | `[1,2,3]`       |
-| Object                 | `{name:"John"}` |
-| Null                   | `null`          |
-| Undefined (JavaScript) | `undefined`     |
-
----
-
-## ✍️ Syntax
-
-### JavaScript
-
-```javascript
-let name = "Yesu Raju"; // String
-
-let age = 25; // Number
-
-let salary = 45000.5; // Decimal
-
-let isActive = true; // Boolean
-
-let skills = ["Node.js", "React"]; // Array
-
-let user = {
-  name: "Yesu Raju",
-  age: 25,
-}; // Object
-```
-
----
-
-### SQL
 
 ```sql
-CREATE TABLE Users (
+is_active BOOLEAN
+```
+
+---
+
+# ✍️ Syntax
+
+## Create Table
+
+```sql
+CREATE TABLE Employee (
     id INT,
     name VARCHAR(100),
-    age INT,
     salary DECIMAL(10,2),
-    is_active BOOLEAN,
-    created_at TIMESTAMP
+    joining_date DATE,
+    is_active BOOLEAN
 );
 ```
 
 ---
 
-## 💻 Example queries
+# 💻 Example Queries
 
-- What are Data Types?
-- Why are Data Types important?
-- What is the difference between Integer and Float?
-- What is a Boolean?
-- What is VARCHAR in SQL?
-- What is BLOB?
-- What is the difference between Array and Object?
+## Create Employee Table
 
----
-
-## ❓ Common interview questions
-
-1. What are Data Types?
-2. Why do we use Data Types?
-3. What is the difference between Integer and Float?
-4. What is Boolean?
-5. What is VARCHAR?
-6. What is TIMESTAMP?
-7. What is BLOB?
-8. What is the difference between Array and Object?
-9. What is Null?
-10. What is Undefined? (JavaScript)
-
----
-
-## 📝 Practice exercises
-
-1. Identify the data type of each value:
-   - `"Hello"`
-   - `100`
-   - `99.95`
-   - `true`
-   - `["Java", "Node"]`
-
-2. Design a **Student** table with appropriate SQL data types.
-
-3. Create a JavaScript object representing a user.
-
-4. Explain when to use:
-   - String
-   - Integer
-   - Boolean
-   - Date
-
-5. Compare SQL data types with JavaScript data types.
-
----
-
-## ⚠️ Common mistakes
-
-- Storing numbers as strings.
-- Using an Integer for decimal values.
-- Choosing the wrong data type for dates.
-- Storing large files directly in the database without considering storage needs.
-- Confusing `null` with `undefined` in JavaScript.
-- Using overly large data types when a smaller one is sufficient.
-
----
-
-## 🔁 Revision summary
-
-### Data Types
-
-- Define the kind of data that can be stored.
-- Improve performance and data integrity.
-- Ensure correct operations on data.
-
-### Common Data Types
-
-- **String** → Text
-- **Integer** → Whole Numbers
-- **Float / Decimal** → Decimal Numbers
-- **Boolean** → True/False
-- **Date** → Date & Time
-- **Array** → Multiple Values
-- **Object** → Key-Value Data
-- **Binary** → Images, Videos, Files
-
-### Easy Revision Formula
-
-```text
-Text
-
-↓
-
-String
-
-Number
-
-↓
-
-Integer / Float
-
-True or False
-
-↓
-
-Boolean
-
-Date
-
-↓
-
-Date/Time
-
-Many Values
-
-↓
-
-Array
-
-Related Data
-
-↓
-
-Object
+```sql
+CREATE TABLE Employee (
+    id INT PRIMARY KEY,
+    name VARCHAR(100),
+    age INT,
+    salary DECIMAL(10,2),
+    joining_date DATE,
+    is_active BOOLEAN
+);
 ```
 
-### Memory Trick
+---
 
-```text
-String
+## Insert Data
 
-↓
-
-Words
-
-Integer
-
-↓
-
-Whole Numbers
-
-Float
-
-↓
-
-Decimal Numbers
-
-Boolean
-
-↓
-
-Yes / No
-
-Date
-
-↓
-
-Time Information
-
-Array
-
-↓
-
-Many Items
-
-Object
-
-↓
-
-Complete Information
+```sql
+INSERT INTO Employee
+VALUES (
+    1,
+    'John',
+    25,
+    50000.50,
+    '2026-07-13',
+    TRUE
+);
 ```
 
-> **Remember:**
->
-> A **Data Type** tells the computer **what kind of data is stored** and **how it should be handled**. Choosing the correct data type makes applications more efficient, reliable, and easier to maintain.
+---
+
+## Retrieve Employees
+
+```sql
+SELECT *
+FROM Employee;
+```
+
+---
+
+# ❓ Common Interview Questions
+
+### Q1. What is a Data Type?
+
+A Data Type defines what kind of value can be stored in a database column.
+
+---
+
+### Q2. Why do we use Data Types?
+
+To:
+
+- Store correct data
+- Prevent invalid values
+- Improve storage efficiency
+- Improve performance
+
+---
+
+### Q3. What is the difference between CHAR and VARCHAR?
+
+**CHAR**
+
+- Fixed length
+- Always uses the defined size
+
+Example:
+
+```text
+CHAR(10)
+
+"John"
+
+Stored as:
+
+John______
+```
+
+---
+
+**VARCHAR**
+
+- Variable length
+- Uses only the required storage
+
+Example:
+
+```text
+VARCHAR(10)
+
+John
+```
+
+VARCHAR is more commonly used.
+
+---
+
+### Q4. Difference between INT and BIGINT?
+
+- INT → Smaller range of numbers
+- BIGINT → Much larger range
+
+Use BIGINT when very large numbers are expected.
+
+---
+
+### Q5. When should we use DECIMAL instead of FLOAT?
+
+Use **DECIMAL** for money because it stores exact values.
+
+Use **FLOAT** for approximate values such as scientific calculations.
+
+---
+
+# 🧩 Interview Follow-up Questions
+
+### Q1. Which Data Types are used most often?
+
+The most commonly used are:
+
+- INT
+- VARCHAR
+- DECIMAL
+- DATE
+- TIMESTAMP
+- BOOLEAN
+- TEXT
+
+---
+
+### Q2. Why shouldn't we store numbers as VARCHAR?
+
+Because:
+
+- Calculations become difficult
+- Sorting may be incorrect
+- Performance can decrease
+
+Always use numeric data types for numbers.
+
+---
+
+### Q3. Can we change a column's Data Type later?
+
+Yes.
+
+Example:
+
+```sql
+ALTER TABLE Employee
+ALTER COLUMN salary TYPE DECIMAL(12,2);
+```
+
+---
+
+### Q4. Which Data Type should be used for phone numbers?
+
+Usually **VARCHAR**, not INT.
+
+Reason:
+
+- Phone numbers are identifiers, not values for calculation.
+- They may contain leading zeros or symbols like `+`.
+
+---
+
+### Q5. Which Data Type should be used for money?
+
+Use **DECIMAL**, not FLOAT.
+
+DECIMAL stores exact values, making it suitable for financial data.
+
+---
+
+# 📝 Practice Exercises
+
+### Exercise 1
+
+Create a `Student` table with:
+
+- id
+- name
+- age
+- email
+
+Choose appropriate data types.
+
+---
+
+### Exercise 2
+
+Create a `Product` table.
+
+Columns:
+
+- id
+- name
+- price
+- stock
+- created_at
+
+---
+
+### Exercise 3
+
+Insert five employee records.
+
+---
+
+### Exercise 4
+
+Create a table with a BOOLEAN column.
+
+---
+
+### Exercise 5
+
+Explain why `VARCHAR` is used for email addresses.
+
+---
+
+# ⚠️ Common Mistakes
+
+### ❌ Using VARCHAR for numbers
+
+Wrong:
+
+```sql
+salary VARCHAR(20)
+```
+
+Correct:
+
+```sql
+salary DECIMAL(10,2)
+```
+
+---
+
+### ❌ Using INT for phone numbers
+
+Phone numbers are identifiers.
+
+Use:
+
+```sql
+phone VARCHAR(15)
+```
+
+---
+
+### ❌ Using FLOAT for money
+
+Use:
+
+```sql
+DECIMAL(10,2)
+```
+
+Money requires exact precision.
+
+---
+
+### ❌ Choosing very large VARCHAR sizes unnecessarily
+
+Example:
+
+```sql
+name VARCHAR(5000)
+```
+
+Use a realistic size, such as:
+
+```sql
+name VARCHAR(100)
+```
+
+---
+
+# 🔁 Revision Summary
+
+✅ Data Types define what kind of data a column can store.
+
+✅ They improve data integrity.
+
+✅ They optimize storage and performance.
+
+✅ Common Data Types:
+
+- INT
+- VARCHAR
+- DECIMAL
+- DATE
+- TIMESTAMP
+- BOOLEAN
+- TEXT
+
+✅ Every table column should have an appropriate data type.
+
+---
+
+# 💡 Key Takeaways
+
+- A Data Type tells the database what kind of data a column can store.
+- Choosing the correct Data Type improves accuracy, storage efficiency, and performance.
+- Use `VARCHAR` for text, `INT` for whole numbers, `DECIMAL` for money, `DATE`/`TIMESTAMP` for dates, and `BOOLEAN` for true/false values.
+- Don't memorize every SQL data type—master the commonly used ones first.
